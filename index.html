@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Battleship</title>
+  </head>
+  <body>
+    <main id="game">
+      <header class="game-header">
+        <p>Battleship Game</p>
+      </header>
+      <div class="menu-container" data-visible="false">
+        <div class="menu-content">
+            <p class="menu-description">
+              Drag and drop the ships to the gameboard to place them. Click on the placed ship to rotate it.
+            </p>
+            <select id="difficulty-select">
+              <option value="easy">Easy</option>
+              <option value="medium" selected>Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+            <button type="button" id="reset-button">Reset</button>
+            <button type="button" id="randomize-button">Random</button>
+            <button type="button" id="continue-button">Play</button>
+        </div>
+        <div class="gameboard">
+        </div>
+        <div class="menu-ship-list">
+        </div>
+      </div>
+      <div class="game-container"  data-visible="true">
+        <p id="turn-message">Your Turn!</p>
+        <div>
+          <div class="player-container">
+            <div class="remaining-ships">
+  
+            </div>
+            <div class="gameboard">
+  
+            </div>
+          </div>
+          <div class="enemy-container">
+            <div class="gameboard">
+  
+            </div>
+            <div class="remaining-ships">
+  
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="information-container">
+        <div class="difficulty-description">
+          <ol>
+            <li><b>Easy:</b> Computer always hits random squares.</li>
+            <li><b>Medium:</b> If the computer exposes a ship, it tries to continue hitting it.</li>
+            <li><b>Hard:</b> If the computer exposes a ship, it never misses.</li>
+          </ol>
+        </div>
+        <div class="rule-description">
+          <ol>
+            <li>Game starts with your turn.</li>
+            <li>If you miss (gray square), computer plays it's turn.</li>
+            <li>If you hit a ship, the square you hit gets exposed (orange square) and you get an another turn.</li>
+            <li>If you sink a ship, all of the ship gets exposed (red squares) and you get an another turn.</li>
+            <li>You have to sink all of the enemy ships to win the game, if all of your ships are sunk, you lose the game.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="game-end-modal-container" data-visible="false">
+        <div class="game-end-modal-content">
+          <p>
+          </p>
+          <button type="button" id="replay-button">Replay</button>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="./js/game.js"></script>
+  </body>
+</html>

@@ -1,0 +1,457 @@
+* {
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+
+}
+
+body {
+
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+
+}
+
+#game {
+
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.game-header {
+
+    position: fixed;
+    font-size: 2rem;
+    top: 10px;
+    left: 18px;
+
+}
+
+.game-container {
+
+    width: inherit;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.game-container[data-visible="false"] {
+
+    display: none;
+
+}
+
+.game-container[data-visible="true"] {
+
+    display: flex;
+
+}
+
+.game-container > div:first-of-type {
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 180px 0 0 0;
+
+}
+
+#turn-message {
+
+    position: fixed;
+    color: green;
+    font-size: 2rem;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 48px 0 0 0;
+    padding: 8px;
+
+}
+
+.player-container {
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 0 90px 0 0;
+
+}
+
+.enemy-container {
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 0 0 0 90px;
+
+}
+
+.menu-container {
+
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 180px 0 0 0;
+
+}
+
+.menu-container[data-visible="false"] {
+
+    display: none;
+
+}
+
+.menu-container[data-visible="true"] {
+
+    display: flex;
+
+}
+
+.menu-content {
+
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 36px 0 0;
+
+}
+
+.menu-content > button {
+
+    padding: 8px;
+
+}
+
+#difficulty-select {
+
+    margin: 18px 0 0 0;
+    padding: 8px 4px 8px 4px;
+
+}
+
+#reset-button {
+
+    margin: 18px 0 0 0;
+
+}
+
+#randomize-button {
+
+    margin: 18px 0 0 0;
+
+}
+
+#continue-button {
+
+    margin: 18px 0 0 0;
+
+}
+
+.menu-ship-list {
+
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    margin: 18px 36px 0 36px;
+
+}
+
+.menu-ship-list::before { 
+
+    position: absolute;
+    content: "Your Ships";
+    top: -36px;
+
+}
+
+.menu-ship {
+
+    height: 36px;
+    width: fit-content;
+    min-height: 36px;
+    max-height: 36px;
+    margin: 0 0 12px 0;
+    border: thin solid black;
+    background-color: dodgerblue;
+    cursor: grab;
+
+}
+
+.menu-ship-part {
+
+    display: inline-block;
+    height: 36px;
+    width: 36px;
+
+}
+
+.gameboard {
+
+    height: 360px;
+    width: 360px;
+    min-height: 360px;
+    min-width: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border: thin solid black;
+    counter-reset: row-count;
+
+}
+
+.enemy-container > .gameboard::after {
+
+    position: absolute;
+    content: "Enemy Board";
+    bottom: -36px;
+
+}
+
+.player-container > .gameboard::after {
+
+    position: absolute;
+    content: "Your Board";
+    bottom: -36px;
+
+}
+
+.gameboard-row {
+
+    height: 36px;
+    width: 360px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    counter-increment: row-count;
+    counter-reset: cell-count;
+
+}
+
+.gameboard-row::before {
+
+    position: absolute;
+    content: counter(row-count, lower-alpha);
+    left: -18px;
+
+}
+
+.gameboard-row:first-of-type > .gameboard-cell::after {
+
+    position: absolute;
+    content: counter(cell-count);
+    top: -24px;
+    
+}
+
+.gameboard-cell {
+
+    height: 36px;
+    width: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-top: thin solid black;
+    border-left: thin solid black;
+    user-select: none;
+    counter-increment: cell-count;
+
+}
+
+.gameboard-cell[data-type="player"][data-ship="true"] {
+
+    background-color: dodgerblue;
+
+}
+
+.gameboard-cell[data-revealed="true"] {
+
+    background-color: lightgray;
+
+}
+
+.gameboard-cell[data-ship="hit"] {
+
+    background-color: orange;
+
+}
+
+.gameboard-cell[data-ship="sunk"] {
+
+    background-color: red;
+
+}
+
+.enemy-container .gameboard-cell[data-revealed="false"]:hover {
+
+    background-color: rgba(0, 0, 0, 0.1);
+
+}
+
+.remaining-ships {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    margin: 18px 36px 0 36px;
+
+}
+
+.enemy-container > .remaining-ships::before { 
+
+    position: absolute;
+    content: "Enemy Ships";
+    width: fit-content;
+    white-space: nowrap;
+    top: -36px;
+
+}
+
+.player-container > .remaining-ships::before { 
+
+    position: absolute;
+    content: "Your Ships";
+    top: -36px;
+
+}
+
+.remaining-ship {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0 0 8px 0;
+
+}
+
+.remaining-ship-part {
+
+    display: inline-block;
+    min-height: 18px;
+    min-width: 18px;
+    margin: 0 4px 0 0;
+
+}
+
+.player-container .remaining-ship-part[data-hit="false"] {
+
+    background-color: dodgerblue;
+
+}
+
+.player-container .remaining-ship-part[data-hit="true"] {
+
+    background-color: red;
+
+}
+
+.enemy-container .remaining-ship[data-sunk="false"] > .remaining-ship-part {
+
+    background-color: dodgerblue;
+
+}
+
+.enemy-container .remaining-ship[data-sunk="true"] > .remaining-ship-part {
+
+    background-color: red;
+
+}
+
+.game-end-modal-container {
+
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color:rgba(0, 0, 0, 0.5);
+
+}
+
+.game-end-modal-content {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    opacity: 90%;
+    padding: 1rem;
+
+}
+
+#replay-button {
+
+    margin: 8px 0 0 0;
+    padding: 4px;
+
+}
+
+.game-end-modal-container[data-visible="true"] {
+
+    display: flex;
+
+}
+
+.game-end-modal-container[data-visible="false"] {
+
+    display: none;
+
+}
+
+.information-container {
+
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 90px 0 0 0;
+
+}
+
+.difficulty-description {
+
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 36px 0 0;
+
+}
+
+.rule-description {
+
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 0 36px;
+
+}
