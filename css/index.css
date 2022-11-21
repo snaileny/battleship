@@ -125,12 +125,14 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0 36px 0 0;
+    font-size: large;
 
 }
 
 .menu-content > button {
 
     padding: 8px;
+    font-size: large;
 
 }
 
@@ -138,6 +140,7 @@ body {
 
     margin: 18px 0 0 0;
     padding: 8px 4px 8px 4px;
+    font-size: large;
 
 }
 
@@ -403,7 +406,7 @@ body {
     align-items: center;
     background-color: white;
     opacity: 90%;
-    padding: 1rem;
+    padding: 16px;
 
 }
 
@@ -432,7 +435,9 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: flex-start;
     margin: 90px 0 0 0;
+    font-size: large;
 
 }
 
