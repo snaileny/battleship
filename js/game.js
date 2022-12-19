@@ -127,9 +127,7 @@ class Game {
                     alert("Error occured! Resetting the game...");
                     this.initGame();
 
-                }
-
-                if (result === "miss" && !this.gameOver) {
+                } if (result === "miss" && !this.gameOver) {
     
                     this.ui.renderGameboards();
                     this.checkGameStatus();

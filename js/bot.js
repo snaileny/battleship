@@ -155,6 +155,7 @@ export default class Bot {
                 this.possibleCoordinates = [...this.result[1].getCoordinates()];
 
             }
+            
             const hitIndex = indexOfArray(this.possibleCoordinates, this.coordinates);
             this.possibleCoordinates.splice(hitIndex, 1);
             this.coordinates = this.possibleCoordinates[0];

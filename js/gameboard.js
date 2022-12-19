@@ -362,7 +362,6 @@ export default class Gameboard {
     traverseAroundCoordinates(row, column) {
 
         const cellArray = [];
-
         const startRow = row - 1;
         const startColumn = column - 1;
 
