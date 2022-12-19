@@ -33,7 +33,7 @@ export default class UI {
 
     }
 
-    addShipDragHandlers(dragStartCallback, dragEndCallback) {
+    addShipDragHandlers(dragStartCallback, dragEndCallback) { //TODO: Do these while rendering
 
         const shipElementArray = Array.from(this.elements.menuShipList.children);
 
@@ -46,7 +46,7 @@ export default class UI {
 
     }
 
-    addGameboardDragHandlers(dropCallback, dragOverCallback) {
+    addGameboardDragHandlers(dropCallback, dragOverCallback) { //TODO: Do these while rendering
 
         const rowElementArray = Array.from(this.elements.menuGameboard.children);
 
@@ -188,6 +188,14 @@ export default class UI {
 
                 const shipPartElement = document.createElement("span");
                 shipPartElement.className = "menu-ship-part";
+                //Disable dragging for child elements
+                /*shipPartElement.draggable = "true";
+                shipPartElement.ondragstart = function(e) {
+
+                    e.preventDefault(); 
+                    //e.stopPropagation(); Does this prevent bubbling?
+
+                };*/
 
                 shipElement.appendChild(shipPartElement);
 
